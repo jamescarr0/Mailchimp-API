@@ -1,5 +1,8 @@
 #Newsletter / Email campaign signup - Mailchimp API.
-New subscribers are added to your mail chimp lists.
+
+User sign up page which adds users to your mailchimp email list via mailchimps API.
+
+Written using the Express framework.
 
 ![image](public/img/Homepage.png)
 ![image](public/img/SuccessPage.png)

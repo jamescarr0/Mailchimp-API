@@ -3,13 +3,22 @@ const bodyParser = require("body-parser")
 const request = require("request")
 const https = require("https")
 
+const app = express()
+const port = 3000
+
+app.use(express.static("public"))
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // Users mail chimp settings.
 const settings = {
+
+    // Mailchimp User account/details.
     audienceId: "<audience id>",
     apiKey: "<api key>",
     userName: "<username>",
     serverId: "server id", // Last characters of API key after the '-'
 
+    // api http request options.
     get options() {
         return {
             method: "POST",
@@ -17,6 +26,7 @@ const settings = {
         }
     },
 
+    // Mail chimp api url.
     get url() {
         return "https://" + this.serverId + ".api.mailchimp.com/3.0/lists/" + this.audienceId
     },
@@ -50,10 +60,6 @@ function checkErrors(data) {
     }
 }
 
-const app = express()
-app.use(express.static("public"))
-app.use(bodyParser.urlencoded({ extended: true }))
-
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/signup.html")
 })
@@ -85,6 +91,7 @@ app.post("/", (req, res) => {
 })
 
 // Redirect error/failure back to home route.
-app.post("/failure", (req, res) => { res.redirect("/") })
+app.post("/failure", (req, res) => res.redirect("/"))
 
-app.listen(3000, () => { console.log("Server running on port 3000") })
+// Listen on 'port' for connections.
+app.listen(port, () => console.log(`Server running on port: ${port}`))
