@@ -1,4 +1,6 @@
-#Newsletter / Email campaign signup - Mailchimp API.
+# Mailchimp API
+
+Newsletter / Email campaign signup - Mailchimp API.
 
 User sign up page which adds users to your mailchimp email list via mailchimps API.
 
